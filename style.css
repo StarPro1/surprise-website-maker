@@ -1,0 +1,164 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #050505, #0b2418);
+    color: white;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #b7b7b7;
+    margin-bottom: 25px;
+}
+
+.form-card,
+.preview-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(0, 255, 130, 0.2);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 0 25px rgba(0, 255, 120, 0.12);
+}
+
+label {
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 7px;
+    color: #00ff88;
+    font-weight: bold;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 13px;
+    border-radius: 10px;
+    border: 1px solid #333;
+    background: #111;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #00ff88;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 15px;
+    border: none;
+    border-radius: 50px;
+    background: #00c853;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #00e676;
+    transform: scale(1.02);
+}
+
+.preview-card h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#preview {
+    min-height: 400px;
+    padding: 30px 20px;
+    border-radius: 20px;
+    text-align: center;
+    background: radial-gradient(circle at top, #124d31, #030303 70%);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+.preview-gift {
+    font-size: 80px;
+    margin: 20px;
+    filter: drop-shadow(0 0 20px #00ff88);
+    animation: floating 2s ease-in-out infinite;
+}
+
+#previewTitle {
+    color: white;
+    font-size: 28px;
+}
+
+#previewName {
+    color: #00ff88;
+    margin: 15px 0;
+}
+
+#previewDate {
+    color: #ddd;
+}
+
+.preview-message {
+    margin: 25px auto;
+    max-width: 600px;
+    padding: 20px;
+    line-height: 1.8;
+    white-space: pre-line;
+    color: #eee;
+}
+
+@keyframes floating {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+@media (max-width: 500px) {
+
+    body {
+        padding: 12px;
+    }
+
+    .form-card,
+    .preview-card {
+        padding: 18px;
+    }
+
+    #previewTitle {
+        font-size: 23px;
+    }
+
+    .preview-gift {
+        font-size: 65px;
+    }
+  }
