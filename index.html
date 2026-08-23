@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Surprise Website Maker</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>✨ Surprise Website Maker</h1>
+
+    <p class="subtitle">
+        Create a beautiful surprise website for someone special 💚
+    </p>
+
+
+    <div class="form-card">
+
+        <label>Your Name</label>
+        <input
+            type="text"
+            id="senderName"
+            placeholder="Example: Fahim"
+        >
+
+
+        <label>Special Person's Name</label>
+        <input
+            type="text"
+            id="recipientName"
+            placeholder="Example: Tasmia"
+        >
+
+
+        <label>Occasion</label>
+
+        <select id="occasion">
+
+            <option value="Birthday">🎂 Birthday</option>
+
+            <option value="Anniversary">
+                ❤️ Anniversary
+            </option>
+
+            <option value="Love">
+                💚 Love / Relationship
+            </option>
+
+            <option value="Friendship">
+                🤝 Friendship
+            </option>
+
+            <option value="Custom">
+                ✨ Custom
+            </option>
+
+        </select>
+
+
+        <label>Special Date</label>
+
+        <input
+            type="date"
+            id="specialDate"
+        >
+
+
+        <label>Your Message</label>
+
+        <textarea
+            id="message"
+            rows="6"
+            placeholder="Write your special message here..."
+        ></textarea>
+
+
+        <label>Theme</label>
+
+        <select id="theme">
+
+            <option value="green">
+                🖤💚 Black & Green
+            </option>
+
+            <option value="blue">
+                💙 Blue
+            </option>
+
+            <option value="pink">
+                🩷 Pink
+            </option>
+
+            <option value="purple">
+                💜 Purple
+            </option>
+
+        </select>
+
+
+        <button id="previewBtn">
+            👁️ Update Preview
+        </button>
+
+    </div>
+
+
+    <!-- PREVIEW -->
+
+    <div class="preview-card">
+
+        <h2>Live Preview</h2>
+
+        <div id="preview">
+
+            <div class="preview-gift">
+                🎁
+            </div>
+
+            <h1 id="previewTitle">
+                A Special Surprise 💚
+            </h1>
+
+            <h2 id="previewName">
+                Your Special Person
+            </h2>
+
+            <p id="previewDate">
+                Your special date
+            </p>
+
+            <div class="preview-message" id="previewMessage">
+                Your message will appear here...
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+  </html>
