@@ -184,10 +184,10 @@ generateBtn.addEventListener("click", async () => {
     }
 
     const link =
-        window.location.origin +
-        window.location.pathname +
-        "?surprise=" +
-        data.slug;
+    window.location.origin +
+    window.location.pathname.replace("index.html", "") +
+    "surprise.html?surprise=" +
+    data.slug;
 
     generatedLink.innerHTML = `
         🎉 Your surprise is ready!<br><br>
