@@ -1,4 +1,10 @@
 const SUPABASE_URL = "https://ghlomcrgxkvequombpni.supabase.co";
+const SUPABASE_KEY = "YOUR_ACTUAL_PUBLISHABLE_KEY";
+
+const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 const senderName = document.getElementById("senderName");
 const recipientName = document.getElementById("recipientName");
 const occasion = document.getElementById("occasion");
