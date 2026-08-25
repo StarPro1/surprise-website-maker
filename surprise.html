@@ -257,7 +257,8 @@ loadSurprise();
 </script>
 <script>
 const giftBox = document.getElementById("giftBox");
-const surpriseContent = document.getElementById("surpriseContent");
+const giftScreen = document.getElementById("giftScreen");
+const messageScreen = document.getElementById("messageScreen");
 
 giftBox.addEventListener("click", () => {
 
@@ -265,8 +266,10 @@ giftBox.addEventListener("click", () => {
     giftBox.style.opacity = "0";
 
     setTimeout(() => {
-        giftBox.style.display = "none";
-        surpriseContent.classList.add("opened");
+
+        giftScreen.style.display = "none";
+        messageScreen.style.display = "block";
+
     }, 700);
 
 });
