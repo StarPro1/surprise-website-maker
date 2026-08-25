@@ -1,3 +1,4 @@
+const SUPABASE_URL = "https://ghlomcrgxkvequombpni.supabase.co";
 const senderName = document.getElementById("senderName");
 const recipientName = document.getElementById("recipientName");
 const occasion = document.getElementById("occasion");
