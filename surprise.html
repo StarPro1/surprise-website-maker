@@ -1,1 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Your Surprise 💚</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .surprise-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .surprise-card {
+            width: 100%;
+            max-width: 600px;
+            padding: 35px 25px;
+            text-align: center;
+            border-radius: 25px;
+            background: rgba(255,255,255,.08);
+            border: 1px solid rgba(0,255,136,.3);
+            box-shadow: 0 0 35px rgba(0,255,136,.15);
+        }
+
+        .surprise-gift {
+            font-size: 90px;
+            margin-bottom: 20px;
+            animation: floating 2s ease-in-out infinite;
+        }
+
+        #surpriseTitle {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        #recipientName {
+            color: #00ff88;
+            margin-bottom: 15px;
+        }
+
+        #surpriseDate {
+            color: #ccc;
+            margin-bottom: 25px;
+        }
+
+        #surpriseMessage {
+            white-space: pre-line;
+            line-height: 1.9;
+            font-size: 18px;
+        }
+
+        .from {
+            margin-top: 30px;
+            color: #00ff88;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .error {
+            color: #ff6b6b;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="surprise-page">
+
+    <div class="surprise-card" id="surpriseCard">
+
+        <div class="loading" id="loading">
+            🎁
+            <p>Opening your surprise...</p>
+        </div>
+
+        <div id="surpriseContent" style="display:none;">
+
+            <div class="surprise-gift">
+                🎁
+            </div>
+
+            <h1 id="surpriseTitle">
+                A Special Surprise 💚
+            </h1>
+
+            <h2 id="recipientName">
+                Someone Special
+            </h2>
+
+            <p id="surpriseDate"></p>
+
+            <div id="surpriseMessage"></div>
+
+            <p class="from">
+                With love from <span id="senderName"></span> 💚
+            </p>
+
+        </div>
+
+        <div id="errorMessage" style="display:none;">
+            <h2 class="error">
+                😔 Surprise not found
+            </h2>
+
+            <p>
+                This surprise link may be invalid or expired.
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL =
+    "https://ghlomcrgxkvequombpni.supabase.co";
+
+const SUPABASE_KEY =
+    "YOUR_ACTUAL_PUBLISHABLE_KEY";
+
+const supabaseClient =
+    supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+async function loadSurprise() {
+
+    const params =
+        new URLSearchParams(window.location.search);
+
+    const slug =
+        params.get("surprise");
+
+    if (!slug) {
+
+        showError();
+
+        return;
+    }
+
+
+    const { data, error } =
+        await supabaseClient
+            .from("surprises")
+            .select("*")
+            .eq("slug", slug)
+            .single();
+
+
+    if (error || !data) {
+
+        console.error(error);
+
+        showError();
+
+        return;
+    }
+
+
+    document.getElementById("loading").style.display =
+        "none";
+
+    document.getElementById("surpriseContent").style.display =
+        "block";
+
+
+    document.getElementById("recipientName").textContent =
+        data.recipient_name || "Someone Special";
+
+
+    document.getElementById("senderName").textContent =
+        data.sender_name || "Someone";
+
+
+    document.getElementById("surpriseMessage").textContent =
+        data.message || "A special message for you 💚";
+
+
+    if (data.special_date) {
+
+        const date =
+            new Date(data.special_date);
+
+        document.getElementById("surpriseDate").textContent =
+            date.toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            });
+
+    }
+
+
+    if (data.occasion === "Birthday") {
+
+        document.getElementById("surpriseTitle").textContent =
+            "Happy Birthday 🎂";
+
+    } else if (data.occasion === "Anniversary") {
+
+        document.getElementById("surpriseTitle").textContent =
+            "Happy Anniversary ❤️";
+
+    } else if (data.occasion === "Love") {
+
+        document.getElementById("surpriseTitle").textContent =
+            "A Special Surprise For You 💚";
+
+    } else if (data.occasion === "Friendship") {
+
+        document.getElementById("surpriseTitle").textContent =
+            "For A Special Friend 🤝";
+
+    }
+
+}
+
+
+function showError() {
+
+    document.getElementById("loading").style.display =
+        "none";
+
+    document.getElementById("errorMessage").style.display =
+        "block";
+}
+
+
+loadSurprise();
+
+</script>
+
+</body>
+  </html>
