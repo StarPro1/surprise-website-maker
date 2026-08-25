@@ -142,3 +142,58 @@ theme.addEventListener("change", updatePreview);
 
 // Initial preview
 updatePreview();
+const generateBtn = document.getElementById("generateBtn");
+const generatedLink = document.getElementById("generatedLink");
+
+generateBtn.addEventListener("click", async () => {
+
+    generateBtn.disabled = true;
+    generateBtn.textContent = "Creating...";
+
+    const slug =
+        Math.random().toString(36).substring(2, 10);
+
+    const { data, error } = await supabaseClient
+        .from("surprises")
+        .insert([
+            {
+                sender_name: senderName.value.trim(),
+                recipient_name: recipientName.value.trim(),
+                occasion: occasion.value,
+                special_date: specialDate.value || null,
+                message: message.value.trim(),
+                theme: theme.value,
+                slug: slug
+            }
+        ])
+        .select()
+        .single();
+
+    if (error) {
+
+        console.error(error);
+
+        generatedLink.textContent =
+            "❌ Something went wrong. Please try again.";
+
+        generateBtn.disabled = false;
+        generateBtn.textContent =
+            "🔗 Generate Surprise Link";
+
+        return;
+    }
+
+    const link =
+        window.location.origin +
+        window.location.pathname +
+        "?surprise=" +
+        data.slug;
+
+    generatedLink.innerHTML = `
+        🎉 Your surprise is ready!<br><br>
+        <a href="${link}" target="_blank">${link}</a>
+    `;
+
+    generateBtn.textContent = "✅ Link Generated";
+
+});
