@@ -244,6 +244,21 @@ function showError() {
 loadSurprise();
 
 </script>
+<script>
+const giftBox = document.getElementById("giftBox");
+const surpriseContent = document.getElementById("surpriseContent");
 
+giftBox.addEventListener("click", () => {
+
+    giftBox.style.transform = "scale(1.5) rotate(15deg)";
+    giftBox.style.opacity = "0";
+
+    setTimeout(() => {
+        giftBox.style.display = "none";
+        surpriseContent.classList.add("opened");
+    }, 700);
+
+});
+</script>
 </body>
   </html>
