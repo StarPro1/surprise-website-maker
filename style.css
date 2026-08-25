@@ -162,3 +162,11 @@ button:hover {
         font-size: 65px;
     }
   }
+.developer-credit {
+    text-align: center;
+    padding: 20px 10px;
+    margin-top: 30px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    opacity: 0.6;
+    }
