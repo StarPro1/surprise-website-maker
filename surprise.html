@@ -110,8 +110,23 @@
             }
         }
         #surpriseTitle {
-            font-size: 32px;
-            margin-bottom: 15px;
+    font-size: 32px;
+    margin-bottom: 15px;
+    background: linear-gradient(90deg, #00ff88, #00d9ff, #9d5cff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: titleGlow 3s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 5px rgba(0,255,136,.25));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 15px rgba(0,255,136,.6));
+    }
         }
 
         #recipientName {
