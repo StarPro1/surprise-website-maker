@@ -58,7 +58,32 @@
         transform: translateY(-18px) rotate(3deg);
     }
 }
+        #giftScreen {
+            min-height: 55vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
 
+        #giftScreen p {
+            margin-top: 15px;
+            font-size: 16px;
+            letter-spacing: 1px;
+            opacity: .75;
+            animation: textPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes textPulse {
+            0%, 100% {
+                opacity: .5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
         #surpriseTitle {
             font-size: 32px;
             margin-bottom: 15px;
