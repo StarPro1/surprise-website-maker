@@ -131,6 +131,120 @@
         opacity: 1;
     }
     }
+/* ✨ Premium Gift Screen */
+
+#giftScreen {
+    position: relative;
+    min-height: 55vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+#giftScreen::before,
+#giftScreen::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+#giftScreen::before {
+    width: 260px;
+    height: 260px;
+    background: rgba(0,255,136,.12);
+    filter: blur(70px);
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+#giftScreen::after {
+    width: 120px;
+    height: 120px;
+    background: rgba(0,180,255,.12);
+    filter: blur(50px);
+    animation: glowPulse 4s ease-in-out infinite reverse;
+}
+
+#giftScreen .surprise-gift {
+    position: relative;
+    z-index: 2;
+    font-size: 120px;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 18px;
+
+    filter:
+        drop-shadow(0 0 8px rgba(255,255,255,.5))
+        drop-shadow(0 0 25px rgba(0,255,136,.7))
+        drop-shadow(0 0 55px rgba(0,255,136,.35));
+
+    animation:
+        premiumGiftFloat 2.5s ease-in-out infinite,
+        premiumGiftGlow 2s ease-in-out infinite;
+}
+
+#giftScreen p {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,.85);
+    animation: instructionPulse 2s ease-in-out infinite;
+}
+
+@keyframes premiumGiftFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+
+    50% {
+        transform: translateY(-16px) rotate(2deg);
+    }
+}
+
+@keyframes premiumGiftGlow {
+    0%, 100% {
+        filter:
+            drop-shadow(0 0 8px rgba(255,255,255,.5))
+            drop-shadow(0 0 25px rgba(0,255,136,.6))
+            drop-shadow(0 0 50px rgba(0,255,136,.3));
+    }
+
+    50% {
+        filter:
+            drop-shadow(0 0 12px rgba(255,255,255,.8))
+            drop-shadow(0 0 35px rgba(0,255,136,.9))
+            drop-shadow(0 0 70px rgba(0,255,136,.5));
+    }
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        transform: scale(.85);
+        opacity: .5;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+@keyframes instructionPulse {
+    0%, 100% {
+        opacity: .55;
+        transform: translateY(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-3px);
+    }
+        }    
     </style>
 </head>
 
