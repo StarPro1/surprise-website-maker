@@ -29,10 +29,35 @@
         }
 
         .surprise-gift {
-            font-size: 90px;
-            margin-bottom: 20px;
-            animation: floating 2s ease-in-out infinite;
-        }
+    font-size: 120px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    user-select: none;
+    animation: giftFloat 2.5s ease-in-out infinite;
+    filter:
+        drop-shadow(0 0 12px rgba(0,255,136,.7))
+        drop-shadow(0 0 35px rgba(0,255,136,.35));
+    transition:
+        transform .7s ease,
+        opacity .7s ease,
+        filter .3s ease;
+}
+
+.surprise-gift:hover {
+    filter:
+        drop-shadow(0 0 18px rgba(0,255,136,.9))
+        drop-shadow(0 0 50px rgba(0,255,136,.5));
+}
+
+@keyframes giftFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(-3deg);
+    }
+
+    50% {
+        transform: translateY(-18px) rotate(3deg);
+    }
+}
 
         #surpriseTitle {
             font-size: 32px;
