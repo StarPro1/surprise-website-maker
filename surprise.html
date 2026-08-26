@@ -68,6 +68,69 @@
         .error {
             color: #ff6b6b;
         }
+   body {
+    background:
+        radial-gradient(circle at 50% 20%, rgba(0,255,136,.15), transparent 35%),
+        radial-gradient(circle at 20% 80%, rgba(0,150,255,.10), transparent 30%),
+        #030303;
+}
+
+#giftScreen {
+    min-height: 55vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#giftScreen p {
+    margin-top: 10px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    opacity: .75;
+    animation: textPulse 2s ease-in-out infinite;
+}
+
+.surprise-gift {
+    cursor: pointer;
+    user-select: none;
+    font-size: 120px;
+    filter:
+        drop-shadow(0 0 10px rgba(0,255,136,.5))
+        drop-shadow(0 0 30px rgba(0,255,136,.25));
+    animation: giftFloat 2.5s ease-in-out infinite;
+    transition:
+        transform .7s ease,
+        opacity .7s ease,
+        filter .3s ease;
+}
+
+.surprise-gift:hover {
+    filter:
+        drop-shadow(0 0 15px rgba(0,255,136,.8))
+        drop-shadow(0 0 45px rgba(0,255,136,.4));
+}
+
+@keyframes giftFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(2deg);
+    }
+}
+
+@keyframes textPulse {
+    0%, 100% {
+        opacity: .5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+    }
     </style>
 </head>
 
