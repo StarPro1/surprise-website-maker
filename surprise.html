@@ -277,9 +277,30 @@ async function loadSurprise() {
         data.sender_name || "Someone";
 
 
-    document.getElementById("surpriseMessage").textContent =
-        data.message || "A special message for you 💚";
+    const messageElement =
+    document.getElementById("surpriseMessage");
 
+const messageText =
+    data.message || "A special message for you 💚";
+
+messageElement.textContent = "";
+
+let messageIndex = 0;
+
+function typeSurpriseMessage() {
+
+    if (messageIndex < messageText.length) {
+
+        messageElement.textContent +=
+            messageText.charAt(messageIndex);
+
+        messageIndex++;
+
+        setTimeout(typeSurpriseMessage, 45);
+
+    }
+
+    }
 
     if (data.special_date) {
 
