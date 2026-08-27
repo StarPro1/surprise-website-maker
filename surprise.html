@@ -179,6 +179,23 @@ body {
         transform: translateY(0);
     }
     }
+/* Smooth date entrance */
+#surpriseDate {
+    opacity: 0;
+    animation: dateAppear 1s ease 1.5s forwards;
+}
+
+@keyframes dateAppear {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+        }
 </style>
         
 </head>
