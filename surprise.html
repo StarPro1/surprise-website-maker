@@ -301,7 +301,9 @@ function typeSurpriseMessage() {
     }
 
     }
-
+setTimeout(() => {
+    typeSurpriseMessage();
+}, 800);
     if (data.special_date) {
 
         const date =
