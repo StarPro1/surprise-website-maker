@@ -162,6 +162,23 @@ body {
         transform: translateY(0);
     }
 }
+/* Smooth recipient name */
+#recipientName {
+    opacity: 0;
+    animation: recipientAppear 1s ease 1.2s forwards;
+}
+
+@keyframes recipientAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    }
 </style>
         
 </head>
