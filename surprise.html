@@ -392,9 +392,90 @@ setTimeout(() => {
             "For A Special Friend 🤝";
 
     }
+/* ===== Apply Selected Theme ===== */
+
+const pageBody = document.body;
+const card = document.getElementById("surpriseCard");
+const title = document.getElementById("surpriseTitle");
+const recipient = document.getElementById("recipientName");
+const from = document.querySelector(".from");
+
+if (data.theme === "blue") {
+
+    pageBody.style.background =
+        "radial-gradient(circle at 50% 20%, rgba(0,150,255,.20), transparent 35%), #020817";
+
+    card.style.borderColor =
+        "rgba(0,150,255,.35)";
+
+    card.style.boxShadow =
+        "0 0 30px rgba(0,150,255,.18)";
+
+    recipient.style.color = "#42a5f5";
+    from.style.color = "#42a5f5";
+
+    title.style.background =
+        "linear-gradient(90deg, #42a5f5, #00d9ff, #90caf9)";
 
 }
 
+else if (data.theme === "pink") {
+
+    pageBody.style.background =
+        "radial-gradient(circle at 50% 20%, rgba(255,20,147,.20), transparent 35%), #16030d";
+
+    card.style.borderColor =
+        "rgba(255,70,150,.35)";
+
+    card.style.boxShadow =
+        "0 0 30px rgba(255,70,150,.18)";
+
+    recipient.style.color = "#ff5fa2";
+    from.style.color = "#ff5fa2";
+
+    title.style.background =
+        "linear-gradient(90deg, #ff5fa2, #ff8acb, #ff4081)";
+
+}
+
+else if (data.theme === "purple") {
+
+    pageBody.style.background =
+        "radial-gradient(circle at 50% 20%, rgba(160,60,255,.20), transparent 35%), #0d0316";
+
+    card.style.borderColor =
+        "rgba(180,80,255,.35)";
+
+    card.style.boxShadow =
+        "0 0 30px rgba(180,80,255,.18)";
+
+    recipient.style.color = "#c084fc";
+    from.style.color = "#c084fc";
+
+    title.style.background =
+        "linear-gradient(90deg, #c084fc, #a855f7, #e879f9)";
+
+}
+
+else {
+
+    /* Green theme */
+
+    pageBody.style.background =
+        "radial-gradient(circle at 50% 20%, rgba(0,255,136,.15), transparent 35%), #030303";
+
+    card.style.borderColor =
+        "rgba(0,255,136,.35)";
+
+    card.style.boxShadow =
+        "0 0 30px rgba(0,255,136,.15)";
+
+    recipient.style.color = "#00ff88";
+    from.style.color = "#00ff88";
+
+    title.style.background =
+        "linear-gradient(90deg, #00ff88, #00d9ff, #9d5cff)";
+    }
 
 function showError() {
 
