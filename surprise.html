@@ -99,7 +99,27 @@
     white-space: pre-line;
     line-height: 1.9;
     font-size: 18px;
+    text-align: left;
 }
+
+/* Typing cursor */
+#surpriseMessage::after {
+    content: "|";
+    display: inline-block;
+    margin-left: 3px;
+    color: #00ff88;
+    animation: typingCursor .7s infinite;
+}
+
+@keyframes typingCursor {
+    0%, 45% {
+        opacity: 1;
+    }
+
+    46%, 100% {
+        opacity: 0;
+    }
+                                }
 
 .from {
     margin-top: 30px;
