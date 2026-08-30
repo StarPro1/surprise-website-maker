@@ -1,19 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Your Surprise 💚</title>
 
-    <title>Your Surprise 💚</title>
+<link rel="stylesheet" href="style.css">
 
-    <link rel="stylesheet" href="style.css">
 <style>
+
+/* ================================
+   MAIN SURPRISE PAGE
+================================ */
+
 .surprise-page {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
+    position: relative;
+    z-index: 1;
 }
 
 .surprise-card {
@@ -24,10 +29,21 @@
     border-radius: 30px;
     background: rgba(255,255,255,.07);
     border: 1px solid rgba(0,255,136,.25);
-    box-shadow: 0 0 30px rgba(0,255,136,.12);
+    box-shadow:
+        0 0 30px rgba(0,255,136,.12),
+        0 0 80px rgba(0,255,136,.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition:
+        border-color .6s ease,
+        box-shadow .6s ease,
+        background .6s ease;
 }
 
-/* Gift screen */
+/* ================================
+   GIFT SCREEN
+================================ */
+
 #giftScreen {
     min-height: 55vh;
     display: flex;
@@ -35,6 +51,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    position: relative;
 }
 
 .surprise-gift {
@@ -42,18 +59,44 @@
     margin-bottom: 18px;
     cursor: pointer;
     user-select: none;
-    animation: giftFloat 2.5s ease-in-out infinite;
-    filter: drop-shadow(0 0 18px rgba(0,255,136,.5));
-    transition: transform .7s ease, opacity .7s ease;
+
+    animation:
+        giftFloat 2.5s ease-in-out infinite,
+        giftGlow 2s ease-in-out infinite;
+
+    transition:
+        transform .7s ease,
+        opacity .7s ease,
+        filter .4s ease;
+}
+
+.surprise-gift:hover {
+    transform: scale(1.08);
 }
 
 @keyframes giftFloat {
+
     0%, 100% {
         transform: translateY(0) rotate(-2deg);
     }
 
     50% {
-        transform: translateY(-15px) rotate(2deg);
+        transform: translateY(-16px) rotate(2deg);
+    }
+}
+
+@keyframes giftGlow {
+
+    0%, 100% {
+        filter:
+            drop-shadow(0 0 10px currentColor)
+            drop-shadow(0 0 25px currentColor);
+    }
+
+    50% {
+        filter:
+            drop-shadow(0 0 18px currentColor)
+            drop-shadow(0 0 45px currentColor);
     }
 }
 
@@ -66,6 +109,7 @@
 }
 
 @keyframes textPulse {
+
     0%, 100% {
         opacity: .5;
     }
@@ -75,24 +119,101 @@
     }
 }
 
-/* Message */
+/* ================================
+   MESSAGE SCREEN
+================================ */
+
+#messageScreen {
+    animation: messageAppear 1.2s ease forwards;
+}
+
+@keyframes messageAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
 #surpriseTitle {
     font-size: 32px;
     margin-bottom: 15px;
-    background: linear-gradient(90deg, #00ff88, #00d9ff, #9d5cff);
+
+    background:
+        linear-gradient(
+            90deg,
+            #00ff88,
+            #00d9ff,
+            #9d5cff
+        );
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+
+    animation: titleGlow 3s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+
+    0%, 100% {
+        filter: drop-shadow(0 0 5px rgba(255,255,255,.15));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 16px rgba(255,255,255,.45));
+    }
 }
 
 #recipientName {
     color: #00ff88;
     margin-bottom: 15px;
+
+    opacity: 0;
+
+    animation:
+        recipientAppear 1s ease .4s forwards;
+}
+
+@keyframes recipientAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 #surpriseDate {
     color: #ccc;
     margin-bottom: 25px;
+
+    opacity: 0;
+
+    animation:
+        dateAppear 1s ease .7s forwards;
+}
+
+@keyframes dateAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 #surpriseMessage {
@@ -100,12 +221,37 @@
     line-height: 1.9;
     font-size: 18px;
     text-align: left;
+
+    min-height: 30px;
+    padding: 5px;
 }
 
 .from {
     margin-top: 30px;
     color: #00ff88;
+
+    opacity: 0;
+
+    animation:
+        fromAppear 1s ease 1s forwards;
 }
+
+@keyframes fromAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================================
+   LOADING / ERROR
+================================ */
 
 .loading {
     text-align: center;
@@ -116,7 +262,10 @@
     color: #ff6b6b;
 }
 
-/* Background */
+/* ================================
+   DEFAULT BACKGROUND
+================================ */
+
 body {
     background:
         radial-gradient(
@@ -125,7 +274,15 @@ body {
             transparent 35%
         ),
         #030303;
+
+    transition:
+        background .8s ease;
 }
+
+/* ================================
+   THEME PARTICLES
+================================ */
+
 #themeParticles {
     position: fixed;
     inset: 0;
@@ -134,22 +291,25 @@ body {
     z-index: 0;
 }
 
-.surprise-page {
-    position: relative;
-    z-index: 1;
-}
-}
-
 .particle {
     position: absolute;
     font-size: 22px;
     opacity: .55;
-    animation: floatDown 12s linear infinite;
-    filter: drop-shadow(0 0 8px currentColor);
+
+    animation:
+        floatDown 12s linear infinite;
+
+    filter:
+        drop-shadow(0 0 8px currentColor);
 }
+
 @keyframes floatDown {
+
     from {
-        transform: translateY(-10vh) rotate(0deg);
+        transform:
+            translateY(-10vh)
+            rotate(0deg);
+
         opacity: 0;
     }
 
@@ -158,13 +318,46 @@ body {
     }
 
     to {
-        transform: translateY(110vh) rotate(360deg);
+        transform:
+            translateY(110vh)
+            rotate(360deg);
+
         opacity: 0;
     }
 }
 
-    /* Mobile optimization */
+/* ================================
+   THEME AURA
+================================ */
+
+.surprise-card::before {
+    content: "";
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(0,255,136,.08);
+
+    filter: blur(70px);
+
+    pointer-events: none;
+
+    opacity: .8;
+}
+
+/* ================================
+   MOBILE
+================================ */
+
 @media (max-width: 600px) {
+
+    .surprise-page {
+        padding: 12px;
+    }
 
     .surprise-card {
         padding: 35px 20px;
@@ -181,90 +374,55 @@ body {
 
     #surpriseMessage {
         font-size: 17px;
+        line-height: 1.85;
     }
-}
- /* Smooth message entrance */
-#messageScreen {
-    animation: messageAppear 1.2s ease forwards;
+
 }
 
-@keyframes messageAppear {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
+</style></head><body><div id="themeParticles"></div><div class="surprise-page"><div class="surprise-card" id="surpriseCard">
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-/* Smooth recipient name */
-#recipientName {
-    opacity: 0;
-    animation: recipientAppear 1s ease 1.2s forwards;
-}
+    <!-- LOADING -->
 
-@keyframes recipientAppear {
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
+    <div class="loading" id="loading">
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    }
-/* Smooth date entrance */
-#surpriseDate {
-    opacity: 0;
-    animation: dateAppear 1s ease 1.5s forwards;
-}
+        🎁
 
-@keyframes dateAppear {
-    from {
-        opacity: 0;
-        transform: translateY(12px);
-    }
+        <p>
+            Opening your surprise...
+        </p>
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-        }
-</style>
-        
-</head>
+    </div>
 
-<body>
 
-<div id="themeParticles"></div>
+    <!-- SURPRISE CONTENT -->
 
-<div class="surprise-page">
+    <div id="surpriseContent" style="display:none;">
 
-    <div class="surprise-card" id="surpriseCard">
 
-        <div class="loading" id="loading">
-            🎁
-            <p>Opening your surprise...</p>
+        <!-- GIFT -->
+
+        <div id="giftScreen">
+
+            <div
+                class="surprise-gift"
+                id="giftBox"
+            >
+                🎁
+            </div>
+
+            <p>
+                Tap the gift to open your surprise ✨
+            </p>
+
         </div>
 
-        <div id="surpriseContent" style="display:none;">
-    
-    <div id="giftScreen">
 
-    <div class="surprise-gift" id="giftBox">
-        🎁
-    </div>
+        <!-- MESSAGE -->
 
-    <p>Tap the gift to open your surprise ✨</p>
-
-    </div>
-
-    <div id="messageScreen" style="display:none;">
-
-            
+        <div
+            id="messageScreen"
+            style="display:none;"
+        >
 
             <h1 id="surpriseTitle">
                 A Special Surprise 💚
@@ -279,30 +437,40 @@ body {
             <div id="surpriseMessage"></div>
 
             <p class="from">
-                With love from <span id="senderName"></span> 💚
+                With love from
+                <span id="senderName"></span>
+                💚
             </p>
-</div>
-        </div>
+
         </div>
 
-        <div id="errorMessage" style="display:none;">
-            <h2 class="error">
-                😔 Surprise not found
-            </h2>
+    </div>
 
-            <p>
-                This surprise link may be invalid or expired.
-            </p>
-        </div>
+
+    <!-- ERROR -->
+
+    <div
+        id="errorMessage"
+        style="display:none;"
+    >
+
+        <h2 class="error">
+            😔 Surprise not found
+        </h2>
+
+        <p>
+            This surprise link may be invalid or expired.
+        </p>
 
     </div>
 
 </div>
 
+</div><!-- SUPABASE --><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
+/* ================================
+   SUPABASE
+================================ */
 
 const SUPABASE_URL =
     "https://ghlomcrgxkvequombpni.supabase.co";
@@ -317,13 +485,20 @@ const supabaseClient =
     );
 
 
+/* ================================
+   LOAD SURPRISE
+================================ */
+
 async function loadSurprise() {
 
     const params =
-        new URLSearchParams(window.location.search);
+        new URLSearchParams(
+            window.location.search
+        );
 
     const slug =
         params.get("surprise");
+
 
     if (!slug) {
 
@@ -351,109 +526,295 @@ async function loadSurprise() {
     }
 
 
-    document.getElementById("loading").style.display =
-        "none";
+    /* SHOW SURPRISE */
 
-    document.getElementById("surpriseContent").style.display =
-        "block";
-
-
-    document.getElementById("recipientName").textContent =
-        data.recipient_name || "Someone Special";
+    document.getElementById(
+        "loading"
+    ).style.display = "none";
 
 
-    document.getElementById("senderName").textContent =
-        data.sender_name || "Someone";
+    document.getElementById(
+        "surpriseContent"
+    ).style.display = "block";
 
 
-    const messageElement =
-    document.getElementById("surpriseMessage");
+    /* RECIPIENT */
 
-const messageText =
-    data.message || "A special message for you 💚";
+    document.getElementById(
+        "recipientName"
+    ).textContent =
+        data.recipient_name ||
+        "Someone Special";
 
-messageElement.textContent = "";
 
-let messageIndex = 0;
+    /* SENDER */
 
-function typeSurpriseMessage() {
+    document.getElementById(
+        "senderName"
+    ).textContent =
+        data.sender_name ||
+        "Someone";
 
-    if (messageIndex < messageText.length) {
 
-        messageElement.textContent +=
-            messageText.charAt(messageIndex);
+    /* DATE */
 
-        messageIndex++;
-
-        setTimeout(typeSurpriseMessage, 55);
-
-    }
-}
-
-setTimeout(() => {
-    typeSurpriseMessage();
-}, 800);
-    
     if (data.special_date) {
 
         const date =
             new Date(data.special_date);
 
-        document.getElementById("surpriseDate").textContent =
-            date.toLocaleDateString("en-GB", {
-                day: "numeric",
-                month: "long",
-                year: "numeric"
-            });
-
+        document.getElementById(
+            "surpriseDate"
+        ).textContent =
+            date.toLocaleDateString(
+                "en-GB",
+                {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric"
+                }
+            );
     }
 
 
+    /* ================================
+       OCCASION TITLE
+    ================================ */
+
     if (data.occasion === "Birthday") {
 
-        document.getElementById("surpriseTitle").textContent =
+        document.getElementById(
+            "surpriseTitle"
+        ).textContent =
             "Happy Birthday 🎂";
 
-    } else if (data.occasion === "Anniversary") {
+    }
 
-        document.getElementById("surpriseTitle").textContent =
+    else if (data.occasion === "Anniversary") {
+
+        document.getElementById(
+            "surpriseTitle"
+        ).textContent =
             "Happy Anniversary ❤️";
 
-    } else if (data.occasion === "Love") {
+    }
 
-        document.getElementById("surpriseTitle").textContent =
+    else if (data.occasion === "Love") {
+
+        document.getElementById(
+            "surpriseTitle"
+        ).textContent =
             "A Special Surprise For You 💚";
 
-    } else if (data.occasion === "Friendship") {
+    }
 
-        document.getElementById("surpriseTitle").textContent =
+    else if (data.occasion === "Friendship") {
+
+        document.getElementById(
+            "surpriseTitle"
+        ).textContent =
             "For A Special Friend 🤝";
 
     }
 
-/* ===== Apply Selected Theme ===== */
+    else {
 
-const pageBody = document.body;
-const card = document.getElementById("surpriseCard");
-const title = document.getElementById("surpriseTitle");
-const recipient = document.getElementById("recipientName");
-const from = document.querySelector(".from");
-const gift = document.getElementById("giftBox");
-const particles =
-    document.getElementById("themeParticles");
+        document.getElementById(
+            "surpriseTitle"
+        ).textContent =
+            "A Special Surprise ✨";
+
+    }
+
+
+    /* ================================
+       THEME
+    ================================ */
+
+    applyTheme(data.theme);
+
+}
+
+
+/* ================================
+   APPLY THEME
+================================ */
+
+function applyTheme(themeName) {
+
+    const pageBody =
+        document.body;
+
+    const card =
+        document.getElementById(
+            "surpriseCard"
+        );
+
+    const title =
+        document.getElementById(
+            "surpriseTitle"
+        );
+
+    const recipient =
+        document.getElementById(
+            "recipientName"
+        );
+
+    const from =
+        document.querySelector(
+            ".from"
+        );
+
+    const gift =
+        document.getElementById(
+            "giftBox"
+        );
+
+
+    /* BLUE */
+
+    if (themeName === "blue") {
+
+        pageBody.style.background =
+            "radial-gradient(circle at 50% 20%, rgba(0,150,255,.24), transparent 35%), #020817";
+
+        card.style.borderColor =
+            "rgba(0,150,255,.45)";
+
+        card.style.boxShadow =
+            "0 0 35px rgba(0,150,255,.22), 0 0 90px rgba(0,150,255,.08)";
+
+        recipient.style.color =
+            "#42a5f5";
+
+        from.style.color =
+            "#42a5f5";
+
+        title.style.backgroundImage =
+            "linear-gradient(90deg, #42a5f5, #00d9ff, #90caf9)";
+
+        gift.style.filter =
+            "drop-shadow(0 0 15px #42a5f5) drop-shadow(0 0 40px #00d9ff)";
+
+        createParticles("❄️");
+    }
+
+
+    /* PINK */
+
+    else if (themeName === "pink") {
+
+        pageBody.style.background =
+            "radial-gradient(circle at 50% 20%, rgba(255,20,147,.24), transparent 35%), #16030d";
+
+        card.style.borderColor =
+            "rgba(255,70,150,.45)";
+
+        card.style.boxShadow =
+            "0 0 35px rgba(255,70,150,.22), 0 0 90px rgba(255,70,150,.08)";
+
+        recipient.style.color =
+            "#ff5fa2";
+
+        from.style.color =
+            "#ff5fa2";
+
+        title.style.backgroundImage =
+            "linear-gradient(90deg, #ff5fa2, #ff8acb, #ff4081)";
+
+        gift.style.filter =
+            "drop-shadow(0 0 15px #ff5fa2) drop-shadow(0 0 40px #ff4081)";
+
+        createParticles("💗");
+    }
+
+
+    /* PURPLE */
+
+    else if (themeName === "purple") {
+
+        pageBody.style.background =
+            "radial-gradient(circle at 50% 20%, rgba(160,60,255,.24), transparent 35%), #0d0316";
+
+        card.style.borderColor =
+            "rgba(180,80,255,.45)";
+
+        card.style.boxShadow =
+            "0 0 35px rgba(180,80,255,.22), 0 0 90px rgba(180,80,255,.08)";
+
+        recipient.style.color =
+            "#c084fc";
+
+        from.style.color =
+            "#c084fc";
+
+        title.style.backgroundImage =
+            "linear-gradient(90deg, #c084fc, #a855f7, #e879f9)";
+
+        gift.style.filter =
+            "drop-shadow(0 0 15px #c084fc) drop-shadow(0 0 40px #a855f7)";
+
+        createParticles("✨");
+    }
+
+
+    /* GREEN */
+
+    else {
+
+        pageBody.style.background =
+            "radial-gradient(circle at 50% 20%, rgba(0,255,136,.18), transparent 35%), #030303";
+
+        card.style.borderColor =
+            "rgba(0,255,136,.45)";
+
+        card.style.boxShadow =
+            "0 0 35px rgba(0,255,136,.22), 0 0 90px rgba(0,255,136,.08)";
+
+        recipient.style.color =
+            "#00ff88";
+
+        from.style.color =
+            "#00ff88";
+
+        title.style.backgroundImage =
+            "linear-gradient(90deg, #00ff88, #00d9ff, #9d5cff)";
+
+        gift.style.filter =
+            "drop-shadow(0 0 15px #00ff88) drop-shadow(0 0 40px #00d9ff)";
+
+        createParticles("💚");
+    }
+
+}
+
+
+/* ================================
+   PARTICLES
+================================ */
 
 function createParticles(icon) {
 
+    const particles =
+        document.getElementById(
+            "themeParticles"
+        );
+
     particles.innerHTML = "";
 
-    for (let i = 0; i < 20; i++) {
+
+    for (let i = 0; i < 24; i++) {
 
         const p =
-            document.createElement("span");
+            document.createElement(
+                "span"
+            );
 
-        p.className = "particle";
+        p.className =
+            "particle";
 
-        p.textContent = icon;
+        p.textContent =
+            icon;
 
         p.style.left =
             Math.random() * 100 + "%";
@@ -469,130 +830,135 @@ function createParticles(icon) {
 
         particles.appendChild(p);
     }
-    }
-  
-    if (data.theme === "blue") {
 
-    pageBody.style.background =
-        "radial-gradient(circle at 50% 20%, rgba(0,150,255,.20), transparent 35%), #020817";
-
-    card.style.borderColor =
-        "rgba(0,150,255,.35)";
-
-    card.style.boxShadow =
-        "0 0 30px rgba(0,150,255,.18)";
-
-    recipient.style.color = "#42a5f5";
-    from.style.color = "#42a5f5";
-
-    title.style.backgroundImage =
-    "linear-gradient(90deg, #42a5f5, #00d9ff, #90caf9)";
-gift.style.filter =
-    "drop-shadow(0 0 18px #42a5f5) drop-shadow(0 0 40px #00d9ff)";
-  createParticles("❄️");
-    }
-        
-        
-else if (data.theme === "pink") {
-
-    pageBody.style.background =
-        "radial-gradient(circle at 50% 20%, rgba(255,20,147,.20), transparent 35%), #16030d";
-
-    card.style.borderColor =
-        "rgba(255,70,150,.35)";
-
-    card.style.boxShadow =
-        "0 0 30px rgba(255,70,150,.18)";
-
-    recipient.style.color = "#ff5fa2";
-    from.style.color = "#ff5fa2";
-
-    title.style.backgroundImage =
-    "linear-gradient(90deg, #ff5fa2, #ff8acb, #ff4081)";
-gift.style.filter =
-    "drop-shadow(0 0 18px #ff5fa2) drop-shadow(0 0 40px #ff4081)";
-createParticles("💗");
 }
 
-else if (data.theme === "purple") {
 
-    pageBody.style.background =
-        "radial-gradient(circle at 50% 20%, rgba(160,60,255,.20), transparent 35%), #0d0316";
+/* ================================
+   ERROR
+================================ */
 
-    card.style.borderColor =
-        "rgba(180,80,255,.35)";
-
-    card.style.boxShadow =
-        "0 0 30px rgba(180,80,255,.18)";
-
-    recipient.style.color = "#c084fc";
-    from.style.color = "#c084fc";
-
-    title.style.backgroundImage =
-    "linear-gradient(90deg, #c084fc, #a855f7, #e879f9)";
-gift.style.filter =
-    "drop-shadow(0 0 18px #c084fc) drop-shadow(0 0 40px #a855f7)";
-createParticles("✨");
-}
-
-else {
-
-    /* Green theme */
-
-    pageBody.style.background =
-        "radial-gradient(circle at 50% 20%, rgba(0,255,136,.15), transparent 35%), #030303";
-
-    card.style.borderColor =
-        "rgba(0,255,136,.35)";
-
-    card.style.boxShadow =
-        "0 0 30px rgba(0,255,136,.15)";
-
-    recipient.style.color = "#00ff88";
-    from.style.color = "#00ff88";
-
-    title.style.backgroundImage =
-    "linear-gradient(90deg, #00ff88, #00d9ff, #9d5cff)";
-   gift.style.filter =
-    "drop-shadow(0 0 18px #00ff88) drop-shadow(0 0 40px #00d9ff)";
-createParticles("💚");
-}
-    }
-    
 function showError() {
 
-    document.getElementById("loading").style.display =
-        "none";
+    document.getElementById(
+        "loading"
+    ).style.display = "none";
 
-    document.getElementById("errorMessage").style.display =
-        "block";
+
+    document.getElementById(
+        "errorMessage"
+    ).style.display = "block";
+
 }
 
+
+/* START */
 
 loadSurprise();
 
-</script>
-<script>
-const giftBox = document.getElementById("giftBox");
-const giftScreen = document.getElementById("giftScreen");
-const messageScreen = document.getElementById("messageScreen");
+</script><!-- ================================
+     GIFT OPENING
+================================ --><script>
 
-giftBox.addEventListener("click", () => {
+const giftBox =
+    document.getElementById(
+        "giftBox"
+    );
 
-    giftBox.style.transform = "scale(1.5) rotate(15deg)";
-    giftBox.style.opacity = "0";
+const giftScreen =
+    document.getElementById(
+        "giftScreen"
+    );
 
-    setTimeout(() => {
+const messageScreen =
+    document.getElementById(
+        "messageScreen"
+    );
 
-        giftScreen.style.display = "none";
-        messageScreen.style.display = "block";
 
-    }, 700);
+giftBox.addEventListener(
+    "click",
+    () => {
 
-});
-</script>
-<footer class="developer-credit">
+        /* Gift animation */
+
+        giftBox.style.transform =
+            "scale(1.6) rotate(15deg)";
+
+        giftBox.style.opacity =
+            "0";
+
+
+        /* Open message */
+
+        setTimeout(() => {
+
+            giftScreen.style.display =
+                "none";
+
+            messageScreen.style.display =
+                "block";
+
+
+            /* ================================
+               TYPE MESSAGE AFTER OPENING
+            ================================ */
+
+            const messageElement =
+                document.getElementById(
+                    "surpriseMessage"
+                );
+
+
+            const messageText =
+                window.surpriseMessageText ||
+                "A special message for you 💚";
+
+
+            messageElement.textContent =
+                "";
+
+
+            let messageIndex = 0;
+
+
+            function typeSurpriseMessage() {
+
+                if (
+                    messageIndex <
+                    messageText.length
+                ) {
+
+                    messageElement.textContent +=
+                        messageText.charAt(
+                            messageIndex
+                        );
+
+                    messageIndex++;
+
+
+                    setTimeout(
+                        typeSurpriseMessage,
+                        55
+                    );
+                }
+            }
+
+
+            setTimeout(
+                typeSurpriseMessage,
+                500
+            );
+
+
+        }, 700);
+
+    }
+);
+
+</script><!-- ================================
+     DEVELOPER CREDIT
+================================ --><footer class="developer-credit">
     DEVELOPED BY FAHIM
-</footer>
-</body>
-  </html>
+</footer></body>
+    </html>
