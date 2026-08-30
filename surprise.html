@@ -554,7 +554,9 @@ async function loadSurprise() {
     ).textContent =
         data.sender_name ||
         "Someone";
-
+window.surpriseMessageText =
+    data.message ||
+    "A special message for you 💚";
 
     /* DATE */
 
