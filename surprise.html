@@ -458,11 +458,14 @@ function createParticles(icon) {
         p.style.left =
             Math.random() * 100 + "%";
 
+        p.style.fontSize =
+            (14 + Math.random() * 18) + "px";
+
         p.style.animationDelay =
             Math.random() * 12 + "s";
 
         p.style.animationDuration =
-            (8 + Math.random() * 6) + "s";
+            (8 + Math.random() * 7) + "s";
 
         particles.appendChild(p);
     }
